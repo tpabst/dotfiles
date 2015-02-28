@@ -1,0 +1,45 @@
+[user]
+    name = Thomas Pabst
+    email = thomas.pabst@gmail.com
+
+[color]
+    ui=true
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[push]
+    default = matching
+
+[core]
+    editor = vim
+    filemode = false
+
+[alias]
+    ci = commit
+    co = checkout
+    st = status
+    br = branch
+    tip = log -n 1 --abbrev-commit --decorate
+    glog = log --oneline --decorate --graph --all --date-order
+    glog1 = log --decorate --graph --date=short --pretty=format:'%C(yellow) %h %C(reset)%d %C(green)[%cd] %C(blue)%cn %Creset %s' --all
+    glog2 = log --decorate --graph --date=short --pretty=format:'%C(bold yellow) %h %C(reset)%d %C(bold green)[%cd] %C(blue)%cn %C(bold white) %s' --all
+    glog3 = log --graph --date=short -C -M --pretty=format:'%C(yellow) %h %C(reset)%d %C(green)[%cd] %C(blue)%cn %Creset %s' --all
+    glog4 = log --oneline --decorate --graph --all
+    staged = diff --cached
+    unstaged = reset HEAD --
+    fix = commit --amend
+
+[merge]
+    tool = kdiff3
+    #tool = diffconfilts
+
+[mergetool "diffconfilts"]
+	cmd = diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
+	trustExitCode = true
+	keepBackup = false
+
+[diff "odf"]
+    textconv=odt2txt

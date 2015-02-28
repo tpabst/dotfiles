@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# load environement variables
+source ${DOTFILES_FOLDER}/bash_env_std
+source ${DOTFILES_FOLDER}/bash_env_qt
+
+
+function set_env () {
+    QT_VERSION=$1
+    if [ ${QT_VERSION} -eq 4 ]; then
+
+        export PATH=${PATH_STD}:${PATH_OWN}
+        export LD_LIBRARY_PATH=${LD_LIBRARY_PATH_STD}:${LD_LIBRARY_PATH_OWN}
+        export PKG_CONFIG=${PKG_CONFIG_STD}:${PKG_CONFIG_OWN}
+
+    elif [ ${QT_VERSION} -eq 5 ]; then
+
+        export PATH=${QTDIR}/bin:${PATH_STD}:${PATH_OWN}
+        export LD_LIBRARY_PATH=${QTDIR}/lib:${LD_LIBRARY_PATH_STD}:${LD_LIBRARY_PATH_OWN}
+        export PKG_CONFIG_PATH=${QTDIR}/lib/pkgconfig:${PKG_CONFIG_PATH_STD}:${PKG_CONFIG_PATH_OWN}
+
+    else
+        echo "Wrong value, only 4 & 5 available"
+
+    fi
+}
+
+setqt

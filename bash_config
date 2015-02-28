@@ -1,0 +1,29 @@
+#!/bin/bash
+
+source ${DOTFILES_FOLDER}/bash_gitprompt
+
+function my_prompt_func() {
+    # print hour
+    time="${COLOR_30}\T - "
+
+    # print USER
+    user="${BOLD}${COLOR_24}\u"
+    separator="${BOLD}${COLOR_30} "
+
+    # print HOSTNAME
+    hostname="${COLOR_24}\H\[\e[1;30m\] "
+
+    # print current path and enter
+    current_path="${COLOR_222}\w"
+
+    # print prompt
+    prompt="${COLOR_39}\n\$ \[\e[0;37m\]"
+
+    PS1="\n${time}${user}${separator}${hostname}${current_path}"
+    if [ -d .git ]; then
+        git_prompt_func
+    fi
+    PS1+="${prompt}"
+}
+
+PROMPT_COMMAND=my_prompt_func

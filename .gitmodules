@@ -1,0 +1,3 @@
+[submodule "vim"]
+	path = vim
+	url = /home.local/tpabst/datas/hide_bak/.vim/

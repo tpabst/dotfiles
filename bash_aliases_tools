@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# BASHRC MODULE - ALIASSES - TOOLS
+
+alias rebuild='make clean && make depend && make'
+alias callgrind='valgrind --tool=callgrind --dump-instr=yes --collect-jumps=yes'
+
+alias gitsvnci='git co master && git rebase develop && git svn dcommit && git co develop && git rebase master && git glog -5'
+alias gitsvnup='branch=$(git br | grep "*" | cut -d " " -f 2) && git co master && git svn rebase && git co $branch && git rebase master && git glog'
+alias fgitsvnci="forgits 'git co master && git rebase develop && git svn dcommit && git co develop && git rebase master && git glog -5'"
+alias fgitsvnup='forgits '"'"'branch=$(git br | grep "*" | cut -d " " -f 2) && git co master && git svn rebase && git co $branch && git rebase master && git glog'"'"
+
+alias resource='source ~/.bashrc'
+
+export NUMCPUS=`grep -c '^processor' /proc/cpuinfo`
+alias ncpu="echo $NUMCPUS"
+alias pmake="time make -j$NUMCPUS --load-average=$NUMCPUS"

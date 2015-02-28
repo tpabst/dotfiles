@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# PATH functions
+function setqt5_path () {
+    QT_VER="Qt-5.2.1"
+    QTDIR=/usr/local/${QT_VER}
+}
+
+
+function setqt5_env () {
+    setqt5_path
+}
+
+
+function setqt4_path () {
+    QT_VER="Qt-4.8.4"
+    QTDIR=""
+}
+
+
+function setqt4_env () {
+    setqt5_path
+}
+
+# select qt version
+function select_qt_version () {
+    case $QT_VERSION in
+        4) setqt4_env ;;
+        5) setqt5_env ;;
+        *) echo "'$1' This version is not avaible" ;;
+    esac
+
+    export QTDIR
+}
+
+function setqt () {
+    if [ -z $1 ]; then
+        QT_VERSION=5
+    else
+        QT_VERSION=$1
+    fi
+    export QT_VERSION
+    set_std
+    set_own
+    select_qt_version
+    set_env $QT_VERSION
+}
+
+
+
