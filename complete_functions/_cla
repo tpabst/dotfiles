@@ -1,0 +1,67 @@
+#compdef cla
+
+_cla()
+{
+    local curcontext="$curcontext" state line
+    typeset -A opt_args
+
+    _arguments \
+        '1: :->firstarg'\
+        '*: :->more'
+
+    case $state in
+
+        firstarg)
+            _arguments '1: :(version help env tools qt ctags export backup git svn run)'
+            ;;
+
+        more)
+           cmd=$(echo $words | sed -r "s/^/_complete_/;s/\s/_/g")
+           type $cmd > /dev/null 2>&1 && $cmd || cmd=${cmd%_*}; type $cmd > /dev/null 2>&1 && $cmd ${words[${#words}]} #|| _files;
+            ;;
+
+    esac
+
+}
+
+_complete_cla_tools()
+{
+    compadd "$@" compress compute ctags estimate extract help indent iso2utf8 rgit version
+}
+
+_complete_cla_qt()
+{
+    compadd "$@" convui ctags easysubst get_compile help include palette qt3support qt4 qt5 uic3gen version
+}
+
+_complete_cla_export()
+{
+    compadd "$@" data help TAO
+}
+
+_complete_cla_backup()
+{
+    compadd "$@" all git help std
+}
+
+_complete_cla_git()
+{
+    compadd "$@" help svn-clone
+}
+
+_complete_cla_git_svn-clone()
+{
+    compadd "$@" $(grep "=" ${SCRIPT_CLA}/svn_csc.lst | cut -d "=" -f1 | sed "s/__PACKAGE__/@/g" | paste -sd ' ')
+}
+
+_complete_cla_run()
+{
+    compadd "$@" help log orb simulateur visu_com
+}
+
+#_complete_cla_ctags()
+#{
+#    _files;
+#}
+
+_cla "$@"

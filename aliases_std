@@ -1,0 +1,58 @@
+#!/bin/sh
+
+# Basic
+alias ls='ls -hF --color=auto'
+alias l='ls -CFh --color=auto'
+alias ll='ls -hlF'
+alias la='ls -hAF'
+alias lla='ls -lhAF'
+
+alias cd..='cd ..'
+alias du='du -h'
+alias df='df -h'
+
+alias dir='dir --color=auto'
+alias vdir='vdir --color=auto'
+
+alias grep='grep --color=auto'
+alias rgrep='grep -HnrIs --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+alias less='less --quiet'
+alias diff="diff -NEwabur -x *~ -x *.orig -x *.rej -x *.swp"
+
+
+# vim aliases
+alias :wq='echo Je ne suis PAS vim'
+alias :w='echo Je ne suis PAS vim'
+alias :q!='echo Je ne suis PAS vim'
+alias vi='vim'
+alias gvi='gvim'
+export VIMPAGER=~/my_scripts/vimpager
+alias vless=$VIMPAGER
+alias cvim='vim -c "run clewn.vim" -nb:127.0.0.1'
+alias cclewn='clewn -x . -nb:127.0.0.1'
+
+
+# spécail aliases
+alias open='gnome-open'
+alias rezo="sudo watch netstat -alpe --ip"
+alias h='history'
+alias j='jobs -l'
+alias lo='libreoffice'
+export NUMCPUS=`grep -c '^processor' /proc/cpuinfo`
+alias pmake="time make -j$NUMCPUS --load-average=$NUMCPUS"
+alias maketags='pushd ${WORKSPACE} && ctags -R . && popd'
+alias callgrind='valgrind --tool=callgrind --dump-instr=yes --collect-jumps=yes'
+alias rebuild='make clean && make depend && make'
+#cp avec affichage de progression pour gros fichiers
+alias cprv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress -r --"
+
+
+alias gitsvnci='git co master && git rebase develop && git svn dcommit && git co develop && git rebase master && git glog -5'
+alias gitsvnup='branch=$(git br | grep "*" | cut -d " " -f 2) && git co master && git svn rebase && git co $branch && git rebase master && git glog'
+alias fgitsvnci="forgits 'git co master && git rebase develop && git svn dcommit && git co develop && git rebase master && git glog -5'"
+alias fgitsvnup='forgits '"'"'branch=$(git br | grep "*" | cut -d " " -f 2) && git co master && git svn rebase && git co $branch && git rebase master && git glog'"'"
+
+alias callgrind="valgrind --tool=callgrind --dump-instr=yes --collect-jumps=yes"

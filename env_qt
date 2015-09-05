@@ -1,0 +1,33 @@
+#!/bin/bash
+
+function setqt () {
+    case $1 in
+        3) QT_VERSION=Qt-3.3 ;;
+        4) QT_VERSION=Qt-4.8.4 ;;
+        5) QT_VERSION=SEDUCS-1.1.2;;
+        #5) QT_VERSION=Qt-5.3.1 ;;
+        *) echo "'$1' This version is nost avaible" ;;
+    esac
+
+        source $HOME/.dotfiles/env_std
+        source $HOME/.dotfiles/env_cla
+
+        #QTDIR=/usr/local/$QT_VERSION
+        QTDIR=/projet/commun/$QT_VERSION
+        PATH=$QTDIR/bin:$PATH
+        LD_LIBRARY_PATH=$QTDIR/lib:$LD_LIBRARY_PATH
+
+        export QTDIR
+        export PATH
+        export LD_LIBRARY_PATH
+}
+
+#if [ -f /etc/seducs-release ]; then
+#    setqt 5
+#elif [ -f /etc/redhat-release ]; then
+#    setqt 3
+#elif [ -f /etc/centos-release ]; then
+#    setqt 4
+#else
+#    echo "OS not listed: exec manually setqt [version]"
+#fi

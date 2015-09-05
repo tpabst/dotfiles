@@ -1,0 +1,26 @@
+#compdef qt
+
+_qt()
+{
+    local curcontext="$curcontext" state line
+    typeset -A opt_args
+
+    _arguments \
+        '1: :->firstarg'\
+        '*: :->more'
+
+    case $state in
+
+        firstarg)
+            _arguments '1: :(convui ctags easysubst get_compile help include palette qt3support qt4 qt5 uic3gen version)'
+            ;;
+
+        more)
+           cmd=$(echo $words | sed -r "s/^/_complete_/;s/(\s|-)/_/g")
+           type $cmd > /dev/null 2>&1 && $cmd || cmd=${cmd%_*}; type $cmd > /dev/null 2>&1 && $cmd ${words[${#words}]} #|| _files;
+            ;;
+
+    esac
+}
+
+_qt "$@"
