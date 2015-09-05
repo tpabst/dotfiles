@@ -89,7 +89,7 @@ source $ZSH/oh-my-zsh.sh
 # User configuration
 export PYTHONSTARTUP=~/.dotfiles/pythonrc
 
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/.dotfiles/bin:/usr/local/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
