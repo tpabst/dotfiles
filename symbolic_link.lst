@@ -7,3 +7,4 @@ zlogin
 zlogout
 zshrc
 screenrc
+tmux.conf
