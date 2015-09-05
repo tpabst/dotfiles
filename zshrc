@@ -5,13 +5,37 @@ ZSH=$HOME/.dotfiles/oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
+ZSH_THEME="thomas"
+#ZSH_THEME="skaro"
+#ZSH_THEME="af-magic"
+#ZSH_THEME="intheloop"
+
+#ZSH_THEME="fino"
+#ZSH_THEME="gentoo"
+#ZSH_THEME="juanghurtado"
+#ZSH_THEME="nicoulaj"
+#ZSH_THEME="smt"
+#ZSH_THEME="sporty_256"
+
+#ZSH_THEME="edvardm"
+#ZSH_THEME="arrow"
+#ZSH_THEME="clean"
+#ZSH_THEME="jaischeema"
+#ZSH_THEME="muse"
+#ZSH_THEME="mrtazz"
+#ZSH_THEME="sorin"
+#ZSH_THEME="terminalparty"
+#ZSH_THEME="wedisagree"
+
+#ZSH_THEME="alanpeabody"
+#ZSH_THEME="avit"
+#ZSH_THEME="crcandy"
+#ZSH_THEME="crunch"
+#ZSH_THEME="dpoggi"
+#ZSH_THEME="fletcherm"
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="af-magic"
-#ZSH_THEME="amuse"
-#ZSH_THEME="bira"
-#ZSH_THEME="bureau"
-#ZSH_THEME="zhann"
-#ZSH_THEME="ys"
+#ZSH_THEME="tonotdo"
+#ZSH_THEME="wezm+"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -27,13 +51,13 @@ ZSH_THEME="af-magic"
 # export UPDATE_ZSH_DAYS=13
 
 # Uncomment following line if you want to disable colors in ls
- DISABLE_LS_COLORS="true"
+# DISABLE_LS_COLORS="true"
 
 # Uncomment following line if you want to disable autosetting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want to disable command autocorrection
-# DISABLE_CORRECTION="true"
+DISABLE_CORRECTION="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
  COMPLETION_WAITING_DOTS="true"
@@ -56,7 +80,7 @@ plugins=(git colored-man colorize common-aliases        \
          git-flow github gitignore git-prompt git-remote-branch \
          gnu-utils mercurial perl postgres pyenv pylint python  \
          rsync sublime screen sudo svn terminator themes thor   \
-         vundle django)
+         vundle django gitfast)
 
 source $ZSH/oh-my-zsh.sh
 

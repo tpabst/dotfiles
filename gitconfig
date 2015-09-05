@@ -23,23 +23,41 @@
     st = status
     br = branch
     tip = log -n 1 --abbrev-commit --decorate
-    glog = log --oneline --decorate --graph --all --date-order
-    glog1 = log --decorate --graph --date=short --pretty=format:'%C(yellow) %h %C(reset)%d %C(green)[%cd] %C(blue)%cn %Creset %s' --all
-    glog2 = log --decorate --graph --date=short --pretty=format:'%C(bold yellow) %h %C(reset)%d %C(bold green)[%cd] %C(blue)%cn %C(bold white) %s' --all
-    glog3 = log --graph --date=short -C -M --pretty=format:'%C(yellow) %h %C(reset)%d %C(green)[%cd] %C(blue)%cn %Creset %s' --all
-    glog4 = log --oneline --decorate --graph --all
+    glog = log --oneline --decorate --graph
+    glogs = log --decorate --graph --all -5
+    glogf = log --oneline --decorate --graph --all
+    glogd = log --oneline --decorate --graph --all --date-order
+    glogh = log --graph --date=short -C -M --pretty=format:'%C(yellow) %h %C(green)%ad%C(reset)%C(blue) [%an] %C(reset)%s %C(red) %d'
+    glogu = log --graph --date=short -C -M --pretty=format:'%C(yellow) %h %C(green)%ad%C(reset)%C(blue) [%an] %C(reset)%s %C(red) %d' --all
     staged = diff --cached
     unstaged = reset HEAD --
-    fix = commit --amend
+    fix = commit --amend --no-edit # just add add index to previous ci
+    fixe = commit --amend # fix & e(dit)
+    cleanall = clean -fd
+    undo = reset --hard
 
 [merge]
     tool = kdiff3
-    #tool = diffconfilts
+    #tool = splice
+#
+#[mergetool "splice"]
+#    cmd = "vim -f $BASE $LOCAL $REMOTE $MERGED -c 'SpliceInit'"
+#    trustExitCode = true
 
-[mergetool "diffconfilts"]
-	cmd = diffconflicts vim $BASE $LOCAL $REMOTE $MERGED
-	trustExitCode = true
-	keepBackup = false
+[difftool]
+    prompt = false
+
+
+[mergetool "kdiff3"]
+
+[svn]
+    rmdir=true
+[diff]
+	tool = vimdiff
+
+[web]
+    browser = firefox
+
 
 [diff "odf"]
     textconv=odt2txt

@@ -6,7 +6,9 @@ function delete_symbolic_links () {
 	SYMBOLIC_LINK_FILENAME='symbolic_link.lst'
 	SYMBOLIC_LINK_FILEPATH=${HOME}/${DOTFILE_FOLDER}/${SYMBOLIC_LINK_FILENAME}
 	while read line; do
-		rm -f ${HOME}/.$line
+		if [ -s ${HOME}/.$line ]; then
+			rm -f ${HOME}/.$line
+		fi
 	done < ${SYMBOLIC_LINK_FILEPATH}
 }
 
@@ -21,5 +23,5 @@ function create_symbolic_links () {
 }
 
 
-delete_symbolic_links
+#delete_symbolic_links
 create_symbolic_links

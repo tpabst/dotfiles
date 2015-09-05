@@ -1,12 +1,9 @@
-bash_history
 bash_logout
 bash_profile
 bashrc
 gitconfig
 kdiff3rc
-viminfo
 zlogin
 zlogout
 zshrc
-vimrc
-vim
+screenrc

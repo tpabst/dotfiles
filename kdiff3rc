@@ -1,4 +1,4 @@
-AutoAdvance=0
+AutoAdvance=1
 AutoAdvanceDelay=500
 AutoCopySelection=0
 AutoDetectUnicodeA=1
@@ -75,7 +75,7 @@ Show Toolbar=1
 ShowIdenticalFiles=0
 ShowInfoDialogs=1
 ShowLineNumbers=0
-ShowWhiteSpace=1
+ShowWhiteSpace=0
 ShowWhiteSpaceCharacters=1
 SkipDirStatus=0
 SyncMode=0

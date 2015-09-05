@@ -5,4 +5,3 @@ uname -a
 uptime
 
 # Accept other users messages
-mesg y
