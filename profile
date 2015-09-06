@@ -6,9 +6,7 @@ SCRIPTS=$HOME/scripts
 # Files separation
 source $DOTFILES/bash_color
 source $DOTFILES/aliases_std
-source $DOTFILES/aliases_cla
 source $DOTFILES/env_std
-source $DOTFILES/env_cla
 source $DOTFILES/env_qt
 source $SCRIPTS/tools/tools.sh
 source $SCRIPTS/global.conf

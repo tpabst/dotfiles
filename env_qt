@@ -10,7 +10,6 @@ function setqt () {
     esac
 
         source $HOME/.dotfiles/env_std
-        source $HOME/.dotfiles/env_cla
 
         #QTDIR=/usr/local/$QT_VERSION
         QTDIR=/projet/commun/$QT_VERSION
