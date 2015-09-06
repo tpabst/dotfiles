@@ -50,7 +50,7 @@
  urxvt*color2:      #00AA00
  urxvt*color3:      #FFFF00
  ! blue + purple
- urxvt*color4:      #112037
+ urxvt*color4:      #3465A4
  urxvt*color5:      #A020F0
  ! cyan + white
  urxvt*color6:      #5B5BC7
