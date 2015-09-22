@@ -29,8 +29,8 @@ xterm*scaleHeight: 1.0000001
 *vt100*internalBorder: 1
 
 ! Home/end keys
-urxvt*keysym.Home: \033[1~]
-urxvt*keysym.End: \033[4~]
+urxvt*keysym.Home: \033[1~
+urxvt*keysym.End: \033[4~
 
 ! Appearance
 !  - use a bitmap font
