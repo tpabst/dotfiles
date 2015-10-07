@@ -1,0 +1,9 @@
+#!/bin/bash
+
+fullfile=$1
+shift
+fname=$(basename $fullfile)
+fbname=${fname%.*}
+outputpdfname=$fbname".pdf"
+
+pandoc -t latex $fullfile -o $outputpdfname $@

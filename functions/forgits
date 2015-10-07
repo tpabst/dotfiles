@@ -1,0 +1,14 @@
+#!/bin/bash
+
+forgits()
+{
+    for repo in $(find . -name .git | sed 's/\/\.git//g'); do
+        (
+            cd $repo
+            echo -e "${bold}${COLOR110}$repo${COLORNONE}"
+            if [[ -n $1 ]]; then
+                bash -c $1 || ( echo "Erreur code $?, arrêt .." && return 1 )
+            fi
+        ) || return 1
+    done
+}

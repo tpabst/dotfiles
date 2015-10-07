@@ -1,0 +1,38 @@
+#!/bin/bash
+
+source bash_color
+source ../libs/tools.sh
+
+# extract archives ----------------------------------------------------------
+usage_extract () {
+    echo -en "${bold}${COLOR160}Archives supported:"
+    echo -e "${COLOR34} tar.gz tar.bz2 rar gz tar tbz2 tgz zip Z 7z${COLORNONE}"
+}
+
+extract()
+{
+  if [ -f $1 ] ; then
+    case $1 in
+      *.tar.bz2)	tar xvjf $1	;;
+      *.tar.gz)		tar xvzf $1	;;
+      *.bz2)		bunzip2 $1	;;
+      *.rar)		unrar x $1	;;
+      *.gz)		    gunzip	$1	;;
+      *.tar)		tar xvf $1	;;
+      *.tbz2)		tar xvjf $1	;;
+      *.tgz)		tar xvzf $1	;;
+      *.zip)		unzip $1	;;
+      *.xpi)		unzip $1	;;
+      *.jar)		jar xf $1	;;
+      *.Z)		uncompress $1	;;
+      *.7z)		7z x $1		;;
+      *)		echo -e "$1 ${COLOR160}cannot be extracted via >extract< !${COLORNONE}"
+                        usage_extract;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+    usage_extract
+    die
+  fi
+}
+

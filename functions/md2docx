@@ -1,0 +1,9 @@
+#!/bin/bash
+
+fullfile=$1
+shift
+fname=$(basename $fullfile)
+fbname=${fname%.*}
+outputdocxname=$fbname".docx"
+
+pandoc -s -S $fullfile -o $outputdocxname $@
