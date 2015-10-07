@@ -2,13 +2,11 @@
 
 forgits()
 {
-    for repo in $(find . -name .git | sed 's/\/\.git//g'); do
+    find . -name .git -prune | while read dotgit; do
         (
-            cd $repo
-            echo -e "${bold}${COLOR110}$repo${COLORNONE}"
-            if [[ -n $1 ]]; then
-                bash -c $1 || ( echo "Erreur code $?, arrêt .." && return 1 )
-            fi
+            cd $dotgit/..;
+            pwd
+            eval $* || return 1
         ) || return 1
-    done
+    done;
 }
