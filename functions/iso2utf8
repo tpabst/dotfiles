@@ -1,0 +1,44 @@
+#!/bin/bash
+
+source bash_color
+source ../libs/tools.sh
+
+# main convertion function
+tools_iso2utf8 () {
+    if [ $# -eq 0 ]; then
+        echo "missing argument(s)"
+        usage_iso2utf8
+        die
+    elif [ $# -eq 1 ]; then
+        if [ -f $1 ]; then
+            tools_iconv $1
+        elif [ -d $1 ]; then
+            tools_conv_folder $1
+        else
+            echo "Unknown param 1"
+            usage_iso2utf8
+            die
+        fi
+    elif [ $# -eq 2 ]; then
+        # -a => AND    -o => OR
+        if [ $1 = "-r" -a -d $2 -o -d $1 -a $2 = "-r" ]; then
+            echo "folder recursive 2"
+            if [ -d $1 ]; then ARG=$1
+            elif [ -d $2 ]; then ARG=$2
+            fi
+            tools_conv_folder_recursive $ARG
+        else
+            echo "too many args"
+            usage_iso2utf8
+            die
+        fi
+    else
+        echo "too many args"
+        usage_iso2utf8
+        die
+    fi
+}
+
+usage_iso2utf8 () {
+    echo "usage iso2utf8 [-r] path | file"
+}

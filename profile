@@ -1,15 +1,17 @@
 #!/bin/sh
 
-DOTFILES=$HOME/.dotfiles
-SCRIPTS=$HOME/scripts
+DOTFILES="$HOME/.dotfiles"
+FUNCTIONS_FOLDER="$DOTFILES/functions/"
+LIBS_FOLDER="$DOTFILES/libs/"
+ALIASES_FOLDER="$DOTFILES/aliases/"
+ENV_FOLDER="$DOTFILES/env/"
+
 
 # Files separation
-source $DOTFILES/bash_color
-source $DOTFILES/aliases_std
-source $DOTFILES/env_std
-source $DOTFILES/env_qt
-source $SCRIPTS/tools/tools.sh
-source $SCRIPTS/global.conf
+source ${LIBS_FOLDER}/bash_color
+source ${ALIASES_FOLDER}/aliases_std
+source ${ENV_FOLDER}/env_std
+source ${ENV_FOLDER}/env_qt
 
 export PAGER=
 unset PAGER
@@ -28,22 +30,4 @@ fi
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
 
-
-function vidiff() 
-{
-    tmp=$1
-    orig=$2
-    file=$3
-
-    [ -z $tmp ] && vidiff_usage && exit 0
-    [ -z $orig ] && vidiff_usage && exit 0
-    [ -z $tmp/$file ] && vidiff_usage && exit 0
-    [ -z $orig/$file ] && vidiff_usage && exit 0
-
-    vimdiff $orig/$file $tmp/$file 
-}
-
-function vidiff_usage ()
-{
-    echo -e "${COLOR226}vidiff usage: vidiff  path_tmp  path_orig  file_to_compare${COLORNONE}"
-}
+setxkbmap -option caps:escape

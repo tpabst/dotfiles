@@ -10,19 +10,16 @@ export BASH_DOTFILES=$DOTFILES_FOLDER
 [ -z "$PS1" ] && return
 
 # load color
-source ${DOTFILES_FOLDER}/bash_color
+source ${DOTFILES_FOLDER}/libs/bash_color
 
 # load history config
 source ${DOTFILES_FOLDER}/bash_history_rc
 
 # load environement variables
-source ${DOTFILES_FOLDER}/bash_env
-
-# load bash_config
-source ${DOTFILES_FOLDER}/bash_config
+source ${DOTFILES_FOLDER}/env/bash_env
 
 # load aliases
-source ${DOTFILES_FOLDER}/bash_aliases
+source ${DOTFILES_FOLDER}/aliases/bash_aliases
 
 # enable checkwinsize
 shopt -s checkwinsize

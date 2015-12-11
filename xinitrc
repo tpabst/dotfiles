@@ -1,6 +1,8 @@
  #!/bin/sh
  #
  # User's .xinitrc file
+#
+nohup i8kmon -u C > /dev/null &
 
  # Merge custom X resources
  xrdb -merge "${HOME}/.Xresources"

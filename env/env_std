@@ -1,11 +1,10 @@
 #!/bin/sh
 
 # load files
- source $HOME/scripts/global.conf
 
 # define bin
  PATH=
- PATH=$PATH:$HOME/scripts/bin
+ PATH="$PATH:$HOME/.dotfiles/bin/"
  PATH=$PATH:$HOME/bin
  PATH=$PATH:/usr/local/bin/
  PATH=$PATH:/usr/local/sbin/
@@ -29,9 +28,6 @@
  export LD_LIBRARY_PATH
 
  CTAGS_DIRECTORY=$HOME/.vim/tags
-
-
-#export WORKSPACE=~/workspace
 
 export PAGER=
 unset LESS

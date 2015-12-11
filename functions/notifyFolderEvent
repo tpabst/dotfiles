@@ -1,0 +1,23 @@
+#!/bin/bash
+
+tools=$(basename $0)
+
+function inotifywait_usage()
+{
+    echo -e "usage : $tools path\n"
+    echo "$tools will show all event of a specific folder"
+
+}
+
+[ -z $1 ] && inotifywait_usage && exit
+
+FOLDER_PATH=$1
+
+inotifywait -m $FOLDER_PATH | while read -r $(basename $FOLDER_PATH) event name;
+do
+    case $event in
+        OPEN) echo "The file $name was created or opened";;
+        WRITE) echo "The file $name was written to";;
+        DELETE) echo "The file $name was deleted";;
+    esac
+done

@@ -1,0 +1,320 @@
+# MACROS
+snippet ifndef "add #ifndef...#define...#endif block" bs
+#ifndef ${1:`!p snip.rv = snip.basename.upper() + '_H'`}
+#define $1
+
+${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+
+#endif /* $1 */
+endsnippet
+
+snippet inc "#include local header (inc)" bs
+#include "${1:`!p snip.rv = snip.basename + '.h'`}"
+endsnippet
+
+snippet Inc "Include <> (Inc)" b
+#include <${1:.h}>
+endsnippet
+
+snippet pragmaGCC "Add Pragma GCC" bs
+#pragma GCC ${1:diagnostic ignored} "-${2:Wunused-but-set-variable}"
+endsnippet
+
+# COMMENTS BLOCKS
+snippet cpph "Add comment header of file with Doxygen tags" bs
+/**
+ *******************************************************************************
+ * \file ${1:`!p snip.rv = fn`}
+ *
+ * \brief ${2:put simple descritpion here}
+ * \date ${3:`date +%Y/%m/%d`}
+ *
+ * \author ${4:Thomas Pabst - thomas.pabst@gmail.com}
+ * \copyright ${5:ETC London Paris © `date +%Y`}
+ *******************************************************************************
+ */
+
+ $0
+endsnippet
+
+snippet cmts "Simple comment" s
+// ${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+endsnippet
+
+snippet cmtm "Multiple comment" s
+/* ${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}} */
+endsnippet
+
+snippet cmtcl "Comment a class or struc" s
+/**
+ *******************************************************************************
+ * \class ${1:class or struct's name)}
+ * \brief ${2:put simple descritpion here}
+ *******************************************************************************
+ */
+endsnippet
+
+snippet cmtf "Comment a func" s
+/**
+ *******************************************************************************
+ * ${1:Put simple descritpion here}
+ *
+ * \return ${2:return type}
+ * \param[${3:in}] ${4:set parameter}$0
+ *******************************************************************************
+ */
+endsnippet
+
+snippet cmtd "Simple doxygen comment" s
+/**
+ *******************************************************************************
+ * ${1:Put simple descritpion here}$0
+ *******************************************************************************
+ */
+endsnippet
+
+snippet sep "Separator" b
+/*******************************************************************************/
+endsnippet
+
+snippet param "Add doxygen parma tag" s
+\param[${1:in}] ${2:set parameter}$0
+endsnippet
+
+# TOOLS
+snippet today "add current date" s
+`date +%d/%m/%Y`
+endsnippet
+
+# FUNCTIONS
+snippet main "Add main function" bs
+int main(int argc, char* argv[])
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+
+	return EXIT_SUCCESS;
+}
+endsnippet
+
+
+# STANDARD CPP BLOCK
+snippet try "Add Try..catch block" bs
+try
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+catch(${1:std::exception &e})
+{
+	${2:std::cerr << "Exception : " << e.what() << std::endl;}
+	${3:return EXIT_FAILURE;}
+}
+endsnippet
+
+snippet catch "add Catch.. block" bs
+catch(${1:std::exception &e2})
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
+
+snippet throw "throw exception" s
+throw ${1:std::exception("}${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}");
+endsnippet
+
+snippet if "if.. (if)" s
+if (${1:/* condition */})
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
+
+snippet el "else.. (else)" s
+else
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
+
+snippet eli "else if.. (eli)" s
+else if(${1:/* condition */})
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
+
+
+snippet ifel "if...else (ifel)" s
+if(${1:/* condition */})
+{
+	${2:/* if */}
+}
+else
+{
+	${3:/* else */}
+}
+endsnippet
+
+snippet func "function" bs
+${1:void} ${2:function_name}(${3})
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
+
+snippet funcd "function declaration" bs
+${1:void} ${2:function_name}(${3});
+endsnippet
+
+snippet for "for loop (for)" s
+for (${1:int} ${2:i} = 0; $2 < ${3:count}; ${4:++$2})
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
+
+snippet foreach "c++11 for each" s
+for (${1:auto} ${2:element} : ${3:list})
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+
+endsnippet
+
+snippet enum "Enumeration" s
+enum ${1:name}
+{
+	$0
+};
+endsnippet
+
+snippet while "while loop" s
+while (${1:/* condition */})
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
+
+snippet do "do..while loop (do)" s
+do
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+} while(${1:/* condition */});
+endsnippet
+
+snippet switch "switch...case...default" s
+switch(${1:/* elements */})
+{
+	case '${3:/* one element */}':
+	$0
+	break;
+
+	default:
+	${2:/* treat default case*/}
+}
+endsnippet
+
+snippet case "Add new case" s
+case '${1:/* one element */}':
+$0
+break;
+
+endsnippet
+
+snippet cout "Add cout" s
+std::cout << "${0:Hello world}" << std::endl;
+endsnippet
+
+snippet cerr "Add cerr" s
+std::cerr << "${0:Houston,we have a problem !}" << std::endl;
+endsnippet
+
+snippet typedef "Typedef" s
+typedef ${1:int} ${2:MyCustomType};
+endsnippet
+
+snippet struct "struct" s
+struct ${1:`!p snip.rv = (snip.basename or "name") + "_t"`}
+{
+	${0:/* data */}
+};
+endsnippet
+
+snippet class "Add new Class" !
+class ${1:`!p snip.rv = snip.basename or "name"`}
+{
+	public:
+		${1/(\W+).*/$1/}(${2:arguments});
+		virtual ~${1/(\W+).*/$1/}();
+
+	private:
+	${0:/* data */}
+};
+endsnippet
+
+snippet interface "Add new interface" !
+class ${1:I`!p snip.rv = snip.basename or "name"`}
+{
+	public:
+		${1/(\W+).*/$1/}(${2:arguments}){};
+		virtual ~${${1/(\W+).*/$1/}(){};
+
+		$0
+};
+endsnippet
+
+snippet ns "Namespace" !
+namespace${1/.+/ /m}${1:`!p snip.rv = snip.basename or "name"`}
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}${1/.+/ \/* /m}$1${1/.+/ *\/ /m}
+endsnippet
+
+snippet up "Unique Pointer" i
+std::unique_ptr<${1:`!p
+snip.rv = snip.v.text.strip("*")
+`}>
+endsnippet
+
+snippet sp "shared Pointer" i
+std::shared_ptr<${1:`!p
+snip.rv = snip.v.text.strip("*")
+`}>
+endsnippet
+
+snippet wp "weak Pointer" i
+std::weak_ptr<${1:`!p
+snip.rv = snip.v.text.strip("*")
+`}>
+
+endsnippet
+snippet ap "auto Pointer" i
+std::shared_ptr<${1:`!p
+snip.rv = snip.v.text.strip("*")
+`}>
+endsnippet
+
+snippet nsl "Add namespace of current class" !
+${1:`!p snip.rv = snip.basename or "name"`}::${VISUAL}${0:${VISUAL/(.*)/(?1::arguments)/}}
+endsnippet
+
+snippet constr "Add constructor of current class" !
+${1:`!p snip.rv = snip.basename or "name"`}::$1($2)
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
+
+snippet destr "Add destructor of current class" !
+${1:`!p snip.rv = snip.basename or "name"`}::~$1($2)
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
+
+snippet meth "Add methode of current class" !
+${1:`!p snip.rv = snip.basename or "name"`}::$2($3)
+{
+	${VISUAL}${0:${VISUAL/(.*)/(?1::\/* code *\/)/}}
+}
+endsnippet
+# vim:ft=snippets

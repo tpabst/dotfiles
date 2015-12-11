@@ -1,6 +1,18 @@
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.dotfiles/oh-my-zsh
+DOTFILES_FOLDER=~/.dotfiles
+ZSH=$DOTFILES_FOLDER/oh-my-zsh
 
+
+#sessionname=daemon
+
+#new_session () { tmux new-session -d -s $sessionname "$@"; }
+
+#if tmux has-session -t $sessionname >/dev/null 2>&1; then
+#  #windows=`tmux list-windows -t $sessionname | cut -f 2 -d ' ' | sed 's/[*-]$//g'`
+#    tmux attach -t $sessionname
+#else
+#  tmux -2 new-session -d -n torrent -s $sessionname rtorrent
+#fi
 tmux -2
 
 # Set name of the theme to load.
@@ -61,13 +73,26 @@ ZSH_THEME="thomas"
 # Uncomment following line if you want to disable command autocorrection
 DISABLE_CORRECTION="true"
 
+# Uncomment to change how often before auto-updates occur? (in days)
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment following line if you want to disable colors in ls
+# DISABLE_LS_COLORS="true"
+
+# Uncomment following line if you want to disable autosetting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment following line if you want to disable command autocorrection
+DISABLE_CORRECTION="true"
+
 # Uncomment following line if you want red dots to be displayed while waiting for completion
- COMPLETION_WAITING_DOTS="true"
+#COMPLETION_WAITING_DOTS="true"
 
 # Uncomment following line if you want to disable marking untracked files under
 # VCS as dirty. This makes repository status check for large repositories much,
 # much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
+
 
 # Uncomment following line if you want to  shown in the command execution time stamp
 # in the history command output. The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|
@@ -77,28 +102,54 @@ DISABLE_CORRECTION="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git colored-man colorize common-aliases        \
-         compleat cp debian history extract git-extras          \
-         git-flow github gitignore git-prompt git-remote-branch \
-         gnu-utils mercurial perl postgres pyenv pylint python  \
-         rsync sublime screen sudo svn terminator themes thor   \
-         vundle django gitfast)
+#plugins=(git colored-man colorize common-aliases        \
+#         compleat cp debian history extract git-extras          \
+#         git-flow github gitignore git-prompt git-remote-branch \
+#         gnu-utils mercurial perl postgres pyenv pylint python  \
+#         rsync sublime screen sudo svn terminator themes thor   \
+#         vundle django gitfast)
+
+
+plugins=(cp compleat common-aliases sudo        \
+         colored-man colorize themes            \
+         git gitfast git-extras git-flow github \
+         gitignore git-prompt git-remote-branch \
+         debian history \
+         pyenv pylint python django             \
+         gnu-utils mercurial svn                \
+         perl postgres                          \
+         rsync sublime terminator thor          \
+         vundle)
 
 source $ZSH/oh-my-zsh.sh
 
+# Customize to your needs...
+fpath=($DOTFILES_FOLDER/complete_functions $fpath)
+autoload zmv
+autoload -U compinit
+compinit
+autoload -U bashcompinit
+bashcompinit
+setopt autocd
+#setopt extendedglob
+#setopt rmstarsilent
 
+#setopt correctall
+export HISTSIZE=1000000000000000000
+export HISTFILE="$HOME/.history"
+export SAVEHIST=$HISTSIZE
+setopt hist_ignore_all_dups
+
+source $DOTFILES_FOLDER/profile
 
 # User configuration
 export PYTHONSTARTUP=~/.dotfiles/pythonrc
-
-export PATH=$HOME/.dotfiles/bin:/usr/local/bin:$PATH
-# export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='vim'
  else
-   export EDITOR='mvim'
+   export EDITOR='vim'
  fi
 
 # Compilation flags
@@ -107,51 +158,3 @@ export PATH=$HOME/.dotfiles/bin:/usr/local/bin:$PATH
 # ssh
  export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-# Own
- export PAGER=
- export LC_ALL="en_US.UTF-8"
- export LANG="en_US.UTF-8"
-
-
-
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
-    alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# std aliases
-alias ll='ls -lhF --color=auto'
-alias lla='ls -alhF --color=auto'
-alias la='ls -Ah --color=auto'
-alias l='ls -CFh --color=auto'
-alias cd..='cd ..'
-alias du='du -h'
-alias df='df -h'
-
-# vim aliases
-alias :wq='echo Je ne suis PAS vim'
-alias :w='echo Je ne suis PAS vim'
-alias :q!='echo Je ne suis PAS vim'
-alias vi='vim'
-alias gvi='gvim'
-
-# spécail aliases
-alias open='gnome-open'
-alias rezo="sudo watch netstat -alpe --ip"
-alias h='history'
-alias j='jobs -l'
-
-alias diff="diff -NEwabur -x *~ -x *.orig -x *.rej -x *.swp"
-
-
-export VIMPAGER=~/my_scripts/vimpager
-alias vless=$VIMPAGER
-
-alias lo='libreoffice'
-alias rgrep='grep -HnrIs'
